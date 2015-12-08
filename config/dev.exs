@@ -35,8 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :tokaily_phoenix, TokailyPhoenix.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "vagrant",
+  password: "vagrant",
   database: "tokaily_phoenix_dev",
   hostname: "localhost",
   pool_size: 10
