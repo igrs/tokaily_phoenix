@@ -1,0 +1,8 @@
+<h2>Show session</h2>
+
+<ul>
+
+</ul>
+
+<%= link "Edit", to: session_path(@conn, :edit, @session) %>
+<%= link "Back", to: session_path(@conn, :index) %>
