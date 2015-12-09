@@ -16,10 +16,25 @@
       <!-- Brand -->
       <a href="<%= page_path(@conn, :index) %>" class="navbar-brand">Tokaily</a>
       <!-- Links -->
+
       <ul class="nav navbar-nav">
+        <%= if logged_in?(@conn) do %>
+        <li class="nav-item">
+          <span class="nav-link">
+            <%= current_user(@conn).email %>
+          </span>
+        </li>
+        <li class="nav-item">
+          <%= link "ログアウト", to: session_path(@conn, :delete), method: :delete, form: [class: "nav-link"] %>
+        </li>
+        <% else %>
         <li class="nav-item">
           <a href="<%= registration_path(@conn, :new) %>" class="nav-link">ユーザー登録</a>
         </li>
+        <li class="nav-item">
+          <a href="<%= session_path(@conn, :new) %>" class="nav-link">ログイン</a>
+        </li>
+        <% end %>
       </ul>
     </nav>
 

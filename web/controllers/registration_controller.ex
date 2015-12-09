@@ -17,7 +17,6 @@ defmodule TokailyPhoenix.RegistrationController do
         |> put_flash(:info, "ようこそ" <> changeset.params["email"])
         |> redirect(to: "/")
       { :error, changeset } ->
-        # バリデーションに失敗した場合、"new.html"を表示
         conn
         |> put_flash(:info, "アカウントを作成できませんでした")
         |> render("new.html", changeset: changeset)

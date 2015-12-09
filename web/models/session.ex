@@ -1,22 +1,47 @@
 defmodule TokailyPhoenix.Session do
-  use TokailyPhoenix.Web, :model
 
-  schema "sessions" do
-
-    timestamps
-  end
-
-  @required_fields ~w()
-  @optional_fields ~w()
+  alias TokailyPhoenix.User
 
   @doc """
-  Creates a changeset based on the `model` and `params`.
+  Login user
 
-  If no params are provided, an invalid changeset is returned
-  with no validation performed.
+  If success authentication return {:ok, user} else :error.
   """
-  def changeset(model, params \\ :empty) do
-    model
-    |> cast(params, @required_fields, @optional_fields)
+  def login(params, repo) do
+    user = repo.get_by(User, email: String.downcase(params["email"]))
+    case authenticate(user, params["password"]) do
+      true -> { :ok, user }
+      _    -> :error
+    end
+  end
+
+  @doc """
+  Authenticate user
+
+  Compare input password and db password
+  """
+  defp authenticate(user, password) do
+    case user do
+      nil -> false
+      _   -> Comeonin.Bcrypt.checkpw(password, user.crypted_password)
+    end
+  end
+
+  @doc """
+  Get Current User
+
+  Return current user if user id exists in session
+  """
+  def current_user(conn) do
+    id = Plug.Conn.get_session(conn, :current_user)
+    if id, do: TokailyPhoenix.Repo.get(User, id)
+  end
+
+
+  @doc """
+  Do current user logged in?
+  """
+  def logged_in?(conn) do
+    !!current_user(conn)
   end
 end
