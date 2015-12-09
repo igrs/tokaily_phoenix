@@ -15,11 +15,15 @@ defmodule TokailyPhoenix.Router do
 
   scope "/", TokailyPhoenix do
     pipe_through :browser # Use the default browser stack
-
+    # top page
     get "/", PageController, :index
-
+    # sign up user
     get  "/sign_up", RegistrationController, :new
     post "/sign_up", RegistrationController, :create
+    # login session
+    get    "/login",  SessionController, :new
+    post   "/login",  SessionController, :create
+    delete "/logout", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.
