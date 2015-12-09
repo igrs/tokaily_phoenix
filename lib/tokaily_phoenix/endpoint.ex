@@ -31,9 +31,12 @@ defmodule TokailyPhoenix.Endpoint do
   plug Plug.Head
 
   plug Plug.Session,
-    store: :cookie,
+    store: PlugSessionRedis.Store,
     key: "_tokaily_phoenix_key",
-    signing_salt: "8T00XZPF"
+    table: :redis_sessions,
+    signing_salt: "8T00XZPF",
+    encryption_salt: "BHU00PRS",
+    ttl: 3600
 
   plug TokailyPhoenix.Router
 end

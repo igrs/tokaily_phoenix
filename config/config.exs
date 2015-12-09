@@ -27,3 +27,8 @@ import_config "#{Mix.env}.exs"
 config :phoenix, :generators,
   migration: true,
   binary_id: false
+
+config :plug_session_redis, :config,
+  name: :redis_sessions,
+  pool: [size: 2, max_overflow: 5],
+  redis: [host: '127.0.0.1', port: 6379]
