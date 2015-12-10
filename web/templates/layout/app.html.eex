@@ -40,9 +40,14 @@
 
     <div class="container-fluid">
       <div class="row">
-        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <%= if info = get_flash(@conn, :info) do %>
+        <p class="alert alert-info" role="alert"><%= info %></p>
+        <% end %>
+        <%= if error = get_flash(@conn, :error) do %>
+        <p class="alert alert-danger" role="alert"><%= error %></p>
+        <% end %>
         <%= @inner %>
+
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

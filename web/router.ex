@@ -24,6 +24,8 @@ defmodule TokailyPhoenix.Router do
     get    "/login",  SessionController, :new
     post   "/login",  SessionController, :create
     delete "/logout", SessionController, :delete
+    # categories
+    resources "/categories", CategoryController, except: [:show]
   end
 
   # Other scopes may use custom stacks.

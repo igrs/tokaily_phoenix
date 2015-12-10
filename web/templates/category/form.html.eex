@@ -1,0 +1,20 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>入力エラーがあります。</p>
+      <ul>
+        <%= for {attr, message} <- f.errors do %>
+          <li><%= humanize(attr) %> <%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label>名前</label>
+    <%= text_input f, :name, class: "form-control" %>
+  </div>
+  <div class="text-center">
+    <%= submit "作成する", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -24,11 +24,6 @@ defmodule TokailyPhoenix.SessionController do
     end
   end
 
-  @doc """
-  Logout
-
-  delete_sessionでセッション情報を削除し、ホーム("/")にリダイレクトする
-  """
   def delete(conn, _) do
     conn
     |> delete_session(:current_user)

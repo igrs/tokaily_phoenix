@@ -1,0 +1,6 @@
+<h3>カテゴリ新規作成</h3>
+
+<%= render "form.html", changeset: @changeset,
+                        action: category_path(@conn, :create) %>
+
+<%= link "一覧へ", to: category_path(@conn, :index) %>

@@ -1,0 +1,29 @@
+<h4>カテゴリ一覧</h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for category <- @categories do %>
+    <tr>
+      <td>
+        <%= category.name %>
+      </td>
+      <td>
+          <%= link "編集", to: category_path(@conn, :edit, category),
+                           class: "btn btn-primary" %>
+          <%= link "削除", to: category_path(@conn, :delete, category),
+                           method: :delete,
+                           data: [ confirm: "Are you sure?" ],
+                           class: "btn btn-danger" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "カテゴリ新規作成", to: category_path(@conn, :new) %>
