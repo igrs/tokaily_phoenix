@@ -1,16 +1,17 @@
-defmodule TokailyPhoenix.Category do
+defmodule TokailyPhoenix.Article do
   use TokailyPhoenix.Web, :model
 
-  schema "categories" do
-    field :name, :string
+  schema "articles" do
+    field :title, :string
+    field :body,  :string
 
     timestamps
 
-    has_many :articles, TokailyPhoenix.Article
+    belongs_to :category, TokailyPhoenix.Category
   end
 
-  @required_fields ~w(name)
-  @optional_fields ~w()
+  @required_fields ~w(body category_id)
+  @optional_fields ~w(title)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -21,6 +22,5 @@ defmodule TokailyPhoenix.Category do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> validate_length(:password, max: 50)
   end
 end

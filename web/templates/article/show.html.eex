@@ -1,0 +1,8 @@
+<h4>記事表示</h4>
+
+<ul>
+
+</ul>
+
+<%= link "編集", to: article_path(@conn, :edit, @article) %>
+<%= link "一覧へ", to: article_path(@conn, :index) %>

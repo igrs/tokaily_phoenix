@@ -26,6 +26,7 @@ defmodule TokailyPhoenix.Router do
     delete "/logout", SessionController, :delete
     # categories
     resources "/categories", CategoryController, except: [:show]
+    resources "/articles",   ArticleController
   end
 
   # Other scopes may use custom stacks.

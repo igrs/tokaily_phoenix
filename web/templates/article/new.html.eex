@@ -1,0 +1,7 @@
+<h4>記事新規作成</h4>
+
+<%= render "form.html", changeset: @changeset,
+                        categories: @categories,
+                        action: article_path(@conn, :create) %>
+
+<%= link "一覧へ", to: article_path(@conn, :index) %>
