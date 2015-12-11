@@ -17,8 +17,8 @@ defmodule TokailyPhoenix.Repo.Migrations.InitialSchema do
     end
 
     create table(:articles) do
-      add :title,       :string,  null: false
-      add :body,        :string,  null: false
+      add :title,       :string, null: false
+      add :body,        :text,   null: false
       add :category_id, references(:categories)
       timestamps
     end
