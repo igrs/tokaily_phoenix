@@ -19,6 +19,7 @@ defmodule TokailyPhoenix.Web do
   def model do
     quote do
       use Ecto.Model
+      use Timex.Ecto.Timestamps
 
       import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
@@ -55,6 +56,8 @@ defmodule TokailyPhoenix.Web do
       import TokailyPhoenix.Router.Helpers
 
       import TokailyPhoenix.Session, only: [current_user: 1, logged_in?: 1]
+
+      import TokailyPhoenix.ApplicationHelper
     end
   end
 

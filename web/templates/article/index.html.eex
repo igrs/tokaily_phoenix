@@ -15,8 +15,8 @@
     <tr>
       <td><%= article.category.name %></td>
       <td><%= article.title %></td>
-      <td><%= article.inserted_at %></td>
-      <td><%= article.updated_at %></td>
+      <td><%= convert_ja_timezone(article.inserted_at) %></td>
+      <td><%= convert_ja_timezone(article.updated_at) %></td>
       <td class="text-right">
         <%= link "表示", to: article_path(@conn, :show, article), class: "btn btn-success btn-xs" %>
         <%= link "編集", to: article_path(@conn, :edit, article), class: "btn btn-primary btn-xs" %>

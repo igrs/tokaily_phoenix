@@ -16,7 +16,12 @@
   </div>
   <div class="form-group">
     <label>本文</label>
-    <%= textarea f, :body, class: "form-control editable" %>
+    <%= if @changeset.model.body && @changeset.model.body != "" do %>
+    <div id="body_editable" class="editable"></div>
+    <% else %>
+    <div id="body_editable" class="editable" data-placeholder="記事を入力してください。"></div>
+    <% end %>
+    <%= hidden_input f, :body %>
   </div>
   <div class="form-group">
     <label>カテゴリ</label>
@@ -26,3 +31,18 @@
     <%= submit "反映する", class: "btn btn-primary" %>
   </div>
 <% end %>
+<script>
+  window.onload = function(){
+    var editor = new MediumEditor('.editable', {
+      placeholder: {
+        text: ''
+      }
+    });
+    // initialize
+    $('#body_editable').html($('#article_body').val());
+    // submit hook
+    $('form').submit(function() {
+      $('#article_body').val($('#body_editable').html());
+    });
+  };
+</script>

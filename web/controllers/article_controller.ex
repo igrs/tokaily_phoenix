@@ -1,6 +1,8 @@
 defmodule TokailyPhoenix.ArticleController do
   use TokailyPhoenix.Web, :controller
 
+  require IEx
+
   alias TokailyPhoenix.Article
   alias TokailyPhoenix.Category
 
@@ -19,14 +21,14 @@ defmodule TokailyPhoenix.ArticleController do
 
   def create(conn, %{ "article" => article_params }) do
     changeset = Article.changeset(%Article{}, article_params)
-
+    categories = Repo.all(Category) |> Enum.map(fn(c) -> { c.name, c.id } end)
     case Repo.insert(changeset) do
       { :ok, _article } ->
         conn
         |> put_flash(:info, "Article created successfully.")
         |> redirect(to: article_path(conn, :index))
       { :error, changeset } ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, categories: categories)
     end
   end
 
@@ -39,6 +41,7 @@ defmodule TokailyPhoenix.ArticleController do
     categories = Repo.all(Category) |> Enum.map(fn(c) -> { c.name, c.id } end)
     article = Repo.get!(Article, id)
     changeset = Article.changeset(article)
+    IEx.pry
     render(conn, "edit.html", article: article, changeset: changeset, categories: categories)
   end
 

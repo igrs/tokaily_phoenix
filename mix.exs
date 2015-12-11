@@ -27,7 +27,9 @@ defmodule TokailyPhoenix.Mixfile do
         :phoenix_ecto,
         :postgrex,
         :comeonin,
-        :plug_session_redis
+        :plug_session_redis,
+        :timex,
+        :timex_ecto
       ]
     ]
   end
@@ -47,7 +49,9 @@ defmodule TokailyPhoenix.Mixfile do
       { :phoenix_live_reload, "~> 1.0", only: :dev },
       { :cowboy, "~> 1.0" },
       { :comeonin, "~> 1.6.0" },
-      { :plug_session_redis, "~> 0.1.0" }
+      { :plug_session_redis, "~> 0.1.0" },
+      { :timex, "~> 1.0.0-rc4" },
+      { :timex_ecto, "~> 0.6.0" }
     ]
   end
 
