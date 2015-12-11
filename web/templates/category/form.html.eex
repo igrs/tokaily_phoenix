@@ -15,6 +15,6 @@
     <%= text_input f, :name, class: "form-control" %>
   </div>
   <div class="text-center">
-    <%= submit "作成する", class: "btn btn-primary" %>
+    <%= submit "反映する", class: "btn btn-primary" %>
   </div>
 <% end %>
